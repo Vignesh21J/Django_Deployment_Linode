@@ -131,8 +131,20 @@ const DashboardHome = () => {
                         <td>
                           {new Date(order.created_at).toLocaleDateString()}
                         </td>
-                        <td>${order.subtotal}</td>
-                        <td className="fw-bold">${order.grand_total}</td>
+                        <td>
+                          {new Intl.NumberFormat("en-IN", {
+                            style: "currency",
+                            currency: "INR",
+                            maximumFractionDigits: 0,
+                          }).format(order.subtotal)}
+                        </td>
+                        <td className="fw-bold">
+                          {new Intl.NumberFormat("en-IN", {
+                            style: "currency",
+                            currency: "INR",
+                            maximumFractionDigits: 0,
+                          }).format(order.grand_total)}
+                        </td>
                         <td>
                           <span
                             className={`badge bg-${color}-subtle ${textClass} border border-${color}-subtle px-3 py-2 rounded-pill`}

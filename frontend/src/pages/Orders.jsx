@@ -127,12 +127,23 @@ const Orders = () => {
                             Total Amount
                           </small>
                           <span className="fw-bold fs-5">
-                            ${order.grand_total}
+                            {new Intl.NumberFormat("en-IN", {
+                              style: "currency",
+                              currency: "INR",
+                              maximumFractionDigits: 0,
+                            }).format(order.grand_total)}
                           </span>
                         </div>
+
                         <div className="text-muted small">
                           <small className="d-block">Tax</small>
-                          <span>${order.tax_amount}</span>
+                          <span>
+                            {new Intl.NumberFormat("en-IN", {
+                              style: "currency",
+                              currency: "INR",
+                              maximumFractionDigits: 0,
+                            }).format(order.tax_amount)}
+                          </span>
                         </div>
                       </div>
                     </div>

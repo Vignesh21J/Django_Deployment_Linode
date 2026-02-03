@@ -344,7 +344,11 @@ const Checkout = () => {
                         </div>
                       </div>
                       <small className="fw-semibold">
-                        ${item?.price * item?.quantity}
+                        {new Intl.NumberFormat("en-IN", {
+                          style: "currency",
+                          currency: "INR",
+                          maximumFractionDigits: 0,
+                        }).format(item?.price * item?.quantity)}
                       </small>
                     </div>
                   ))}
@@ -352,23 +356,44 @@ const Checkout = () => {
                 <hr />
                 <div className="d-flex justify-content-between mb-2">
                   <span>Subtotal:</span>
-                  <span>${cartState?.subtotal}</span>
+                  <span>
+                    {new Intl.NumberFormat("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                      maximumFractionDigits: 0,
+                    }).format(cartState?.subtotal)}
+                  </span>
                 </div>
+
                 <div className="d-flex justify-content-between mb-2">
                   <span>Shipping:</span>
                   <span>Free</span>
                 </div>
+
                 <div className="d-flex justify-content-between mb-3">
                   <span>Tax:</span>
-                  <span>${cartState?.total - cartState?.subtotal}</span>
+                  <span>
+                    {new Intl.NumberFormat("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                      maximumFractionDigits: 0,
+                    }).format(cartState?.total - cartState?.subtotal)}
+                  </span>
                 </div>
+
                 <hr />
+
                 <div className="d-flex justify-content-between mb-3">
                   <strong>Total:</strong>
                   <strong className="text-primary h5">
-                    ${cartState?.total}
+                    {new Intl.NumberFormat("en-IN", {
+                      style: "currency",
+                      currency: "INR",
+                      maximumFractionDigits: 0,
+                    }).format(cartState?.total)}
                   </strong>
                 </div>
+
                 <div className="text-center text-muted">
                   <small>
                     <i className="bi bi-shield-check me-1"></i>Secure checkout

@@ -114,7 +114,16 @@ const Cart = () => {
                             {item?.product_name}
                           </div>
                         </td>
-                        <td>${parseFloat(item?.price)}</td>
+                        
+                        {/* Unit Price */}
+                        <td>
+                          {new Intl.NumberFormat("en-IN", {
+                            style: "currency",
+                            currency: "INR",
+                            maximumFractionDigits: 0,
+                          }).format(parseFloat(item?.price))}
+                        </td>
+
                         <td>
                           <QuantitySelector
                             quantity={item.quantity}
@@ -130,8 +139,13 @@ const Cart = () => {
                             size="sm"
                           />
                         </td>
+                        {/* Total Price */}
                         <td className="fw-medium">
-                          ${parseFloat(item?.price) * item?.quantity}
+                          {new Intl.NumberFormat("en-IN", {
+                            style: "currency",
+                            currency: "INR",
+                            maximumFractionDigits: 0,
+                          }).format(parseFloat(item?.price) * item?.quantity)}
                         </td>
                         <td className="fw-medium">
                           {item.tax_percent}%
@@ -168,20 +182,38 @@ const Cart = () => {
 
               <div className="d-flex justify-content-between mb-2">
                 <span className="text-muted">Subtotal</span>
-                <span>${state?.subtotal}</span>
+                <span>
+                  {new Intl.NumberFormat("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                    maximumFractionDigits: 0,
+                  }).format(state?.subtotal)}
+                </span>
               </div>
 
               
               <div className="d-flex justify-content-between mb-2">
                 <span className="text-muted">Tax</span>
-                <span>${state?.total - state?.subtotal}</span>
+                <span>
+                  {new Intl.NumberFormat("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                    maximumFractionDigits: 0,
+                  }).format(state?.total - state?.subtotal)}
+                </span>
               </div>
 
               <hr className="my-3" />
 
               <div className="d-flex justify-content-between mb-4">
                 <span className="h5 fw-bold">Total</span>
-                <span className="h5 fw-bold text-primary">${state?.total}</span>
+                <span className="h5 fw-bold text-primary">
+                  {new Intl.NumberFormat("en-IN", {
+                    style: "currency",
+                    currency: "INR",
+                    maximumFractionDigits: 0,
+                  }).format(state?.total)}
+                </span>
               </div>
 
               <button
