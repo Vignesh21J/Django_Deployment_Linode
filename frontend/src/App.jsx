@@ -20,24 +20,27 @@ function App() {
   return (
     <>
       <Router>
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen d-flex flex-column">
           <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Register />} />
-            <Route element={<PrivateRoute />}>
-              <Route path="/dashboard" element={<Dashboard />}>
-                <Route index element={<DashboardHome />} />
-                <Route path="profile" element={<ProfileSettings />} />
-                <Route path="orders" element={<Orders />} />
+
+          <main className="flex-grow-1">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Register />} />
+              <Route element={<PrivateRoute />}>
+                <Route path="/dashboard" element={<Dashboard />}>
+                  <Route index element={<DashboardHome />} />
+                  <Route path="profile" element={<ProfileSettings />} />
+                  <Route path="orders" element={<Orders />} />
+                </Route>
               </Route>
-            </Route>
-            <Route path="/order/success/:id" element={<OrderSuccess />} />
-          </Routes>
+              <Route path="/order/success/:id" element={<OrderSuccess />} />
+            </Routes>
+          </main>
           <Footer/>
         </div>
       </Router>
