@@ -18,7 +18,7 @@ const Hero = () => {
               Find the latest gadgets and accessories at unbeatable prices.
               Quality guaranteed with fast, secure delivery.
             </p>
-            <div className="d-flex gap-3">
+            <div className="d-flex gap-3 mb-3">
               <button
                 type="button"
                 className="btn btn-primary btn-lg"
@@ -27,10 +27,7 @@ const Hero = () => {
                 <i className="bi bi-bag-plus me-2"></i>
                 Shop Now
               </button>
-              <button type="button" className="btn btn-outline-light btn-lg">
-                <i className="bi bi-play-circle me-2"></i>
-                Learn More
-              </button>
+              
             </div>
           </div>
           <div className="col-lg-6 text-center">
