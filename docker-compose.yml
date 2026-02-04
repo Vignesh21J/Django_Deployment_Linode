@@ -41,8 +41,8 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
       - ./backend-drf/static:/static
       - ./backend-drf/media:/media
+      - ./certbot/www:/var/www/certbot
       - /etc/letsencrypt:/etc/letsencrypt:ro
-      - /opt/clickmart/certbot/www:/opt/clickmart/certbot/www
     depends_on:
       - frontend
       - backend
