@@ -1,5 +1,5 @@
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
@@ -16,33 +16,46 @@ import Register from "./pages/Register";
 import Header from "./components/Navbar";
 import Footer from "./components/Footer";
 
+function AppLayout() {
+  const location = useLocation();
+
+  return (
+    <div className="min-h-screen d-flex flex-column">
+      <Header />
+
+      <main className="flex-grow-1">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
+
+          <Route element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route index element={<DashboardHome />} />
+              <Route path="profile" element={<ProfileSettings />} />
+              <Route path="orders" element={<Orders />} />
+            </Route>
+          </Route>
+
+          <Route path="/order/success/:id" element={<OrderSuccess />} />
+        </Routes>
+      </main>
+
+      {/* ✅ Footer ONLY on Home page */}
+      {location.pathname === "/" && <Footer />}
+    </div>
+  );
+}
+
+
 function App() {
   return (
     <>
       <Router>
-        <div className="min-h-screen d-flex flex-column">
-          <Header />
-
-          <main className="flex-grow-1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Register />} />
-              <Route element={<PrivateRoute />}>
-                <Route path="/dashboard" element={<Dashboard />}>
-                  <Route index element={<DashboardHome />} />
-                  <Route path="profile" element={<ProfileSettings />} />
-                  <Route path="orders" element={<Orders />} />
-                </Route>
-              </Route>
-              <Route path="/order/success/:id" element={<OrderSuccess />} />
-            </Routes>
-          </main>
-          <Footer/>
-        </div>
+        <AppLayout />
       </Router>
     </>
   );
