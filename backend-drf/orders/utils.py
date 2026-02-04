@@ -19,7 +19,7 @@ def send_order_notification(order):
             Thank you for shopping with us,
             Team ClickMart
         """,
-        from_email=settings.EMAIL_HOST_USER,
+        from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[order.user.email],
         fail_silently=False
     )
