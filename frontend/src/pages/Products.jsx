@@ -86,7 +86,7 @@ const Products = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-3 d-flex flex-column h-100">
+                <div className="p-3 d-flex flex-column">
                   <h5
                     className="fw-bold mb-2 text-truncate"
                     title={product?.name}
