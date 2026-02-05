@@ -68,14 +68,12 @@ const Products = () => {
         </div>
 
         {/* Products Grid */}
-        <div className="d-flex flex-wrap justify-content-start gap-4">
+        <div className="products-grid">
           {products?.length > 0 ? (
-            products?.map((product) => (
+            products.map((product) => (
               <div
                 key={product?.id}
                 className="product-card bg-white shadow-sm mb-4"
-                // Added inline style for consistent width if not handled in CSS
-                style={{ width: "18rem" }}
               >
                 {/* Image */}
                 <div className="product-image-wrapper overflow-hidden">
@@ -88,15 +86,15 @@ const Products = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-3 d-flex flex-column flex-grow-1">
+                <div className="p-3 d-flex flex-column h-100">
                   <h5
                     className="fw-bold mb-2 text-truncate"
                     title={product?.name}
                   >
                     {product?.name}
                   </h5>
+
                   <p className="text-muted flex-grow-1 mb-3">
-                    {/* Safe check for description length */}
                     {product?.description
                       ? `${product?.description.substring(0, 80)}...`
                       : "No description available"}
@@ -105,11 +103,12 @@ const Products = () => {
                   <div className="d-flex justify-content-between align-items-center mb-3">
                     <span className="h5 text-primary fw-bold">
                       {new Intl.NumberFormat("en-IN", {
-                          style: "currency",
-                          currency: "INR",
-                          maximumFractionDigits: 0,
-                        }).format(product?.price)}
+                        style: "currency",
+                        currency: "INR",
+                        maximumFractionDigits: 0,
+                      }).format(product?.price)}
                     </span>
+
                     <small
                       className={`fw-semibold ${
                         product?.stock > 0 ? "text-success" : "text-danger"
@@ -126,7 +125,6 @@ const Products = () => {
                     className={`btn btn-primary rounded-pill w-100 ${
                       product?.stock === 0 ? "disabled" : ""
                     }`}
-                    // Use aria-disabled for accessibility on disabled links
                     aria-disabled={product?.stock === 0}
                     tabIndex={product?.stock === 0 ? -1 : undefined}
                   >
@@ -136,7 +134,7 @@ const Products = () => {
               </div>
             ))
           ) : (
-            <div className="col-12 text-center">
+            <div className="text-center">
               <p>No products found.</p>
             </div>
           )}
